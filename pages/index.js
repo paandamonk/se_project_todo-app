@@ -34,6 +34,7 @@ const todosList = new Section(
 //Instantiate the todoCounter.
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
+//Instantiate the todo popup window.
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
   handlerFormSubmit: (getInputValues) => {
@@ -50,34 +51,12 @@ const addTodoPopup = new PopupWithForm({
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoForm = document.forms["add-todo-form"];
-//const addTodoPopup = document.querySelector("#add-todo-popup");
-//const addTodoCloseBtn = document.querySelector(".popup__close");
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
-
-//Adds new todos to the todoList.
-/* addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  //grabs inputs from the form
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  //create a unique id 
-  const id = uuidv4();
-
-  todosList.addItems({name, date, id});
-  addTodoPopup.close();
-  formValidator.resetValidation();
-}); */
 
 addTodoPopup.setEventListeners();
 todosList.renderItems();

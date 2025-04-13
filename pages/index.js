@@ -35,19 +35,22 @@ const todosList = new Section(
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 //Instantiate the todo popup window.
-const addTodoPopup = new PopupWithForm({
-  popupSelector: "#add-todo-popup",
-  handlerFormSubmit: (getInputValues) => {
-    const { name, dateInput } = getInputValues;
-    const date = new Date(dateInput);
-    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-    const id = uuidv4();
-    todosList.addItems({ name, date, id });
-    addTodoPopup.close();
-    todoCounter.updateTotal(true);
-    formValidator.resetValidation();
+const addTodoPopup = new PopupWithForm(
+  {
+    popupSelector: "#add-todo-popup",
+    handlerFormSubmit: (getInputValues) => {
+      let { name, date } = getInputValues;
+      date = new Date(date);
+      date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+      const id = uuidv4();
+      todosList.addItems({ name, date, id });
+      addTodoPopup.close();
+      todoCounter.updateTotal(true);
+      formValidator.resetValidation();
+    },
   },
-});
+  validationConfig
+);
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoForm = document.forms["add-todo-form"];

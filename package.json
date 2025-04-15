@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/paandamonk/se_project_todo-app/issues"
   },
-  "homepage": "https://github.com/paandamonk/se_project_todo-app#readme"
+  "homepage": "https://github.com/paandamonk/se_project_todo-app#readme",
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
 }
